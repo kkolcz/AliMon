@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 import { Button, Paper, TextField } from '@mui/material'
 
+import { loginUser } from '../../../firebase'
+
 const Login = props => {
-	const buttonLoginHandler = () => {
-		props.onLogin(true)
+	const inputEmailRef = useRef()
+	const inputPasswordRef = useRef()
+	const buttonLoginHandler = async () => {
+		// props.onLogin(true)
+		const inputEmail = inputEmailRef.current.value
+		const inputPassword = inputPasswordRef.current.value
+
+		const res = await loginUser(inputEmail, inputPassword)
+		await console.log(res.user.email)
+		await console.log(res.user.uid)
 	}
 
 	return (
@@ -26,8 +36,8 @@ const Login = props => {
 							padding: 10,
 							border: '1px dashed grey',
 						}}> */}
-					<TextField id='login' label='Login' variant='outlined' sx={{ m: 2 }} />
-					<TextField id='login' label='Password' variant='outlined' sx={{ m: 2 }} />
+					<TextField inputRef={inputEmailRef} id='email' label='Email' variant='outlined' sx={{ m: 2 }} />
+					<TextField inputRef={inputPasswordRef} id='password' label='Password' variant='outlined' sx={{ m: 2 }} />
 					<Button variant='contained' onClick={buttonLoginHandler} sx={{ m: 2 }}>
 						Zaloguj
 					</Button>

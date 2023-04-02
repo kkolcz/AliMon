@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 import { Button, Paper, TextField } from '@mui/material'
 
+// import { register } from '../../../auth'
+import { registerUser } from '../../../firebase'
+
 const Register = () => {
-	const buttonRegisterHandler = () => {}
+	const loginInputRef = useRef()
+	const emailInputRef = useRef()
+	const passwordInputRef = useRef()
+	const repasswordInputRef = useRef()
+
+	const buttonRegisterHandler = async () => {
+		const loginInput = loginInputRef.current.value
+		const emailInput = emailInputRef.current.value
+		const passwordInput = passwordInputRef.current.value
+		const repasswordInput = repasswordInputRef.current.value
+
+		const res = await registerUser(emailInput, passwordInput)
+		await console.log(res.user.email)
+		await console.log(res.user.uid)
+	}
+
 	return (
 		<div>
 			<h1>Rejestracja</h1>
@@ -23,10 +41,16 @@ const Register = () => {
 						padding: 10,
 						border: '1px dashed grey',
 					}}> */}
-					<TextField id='login' label='Login' variant='outlined' sx={{ m: 2 }} />
-					<TextField id='email' label='Email' variant='outlined' sx={{ m: 2 }} />
-					<TextField id='password' label='Password' variant='outlined' sx={{ m: 2 }} />
-					<TextField id='reassword' label='Re-Password' variant='outlined' sx={{ m: 2 }} />
+					<TextField inputRef={loginInputRef} id='login' label='Login' variant='outlined' sx={{ m: 2 }} />
+					<TextField inputRef={emailInputRef} id='email' label='Email' variant='outlined' sx={{ m: 2 }} />
+					<TextField inputRef={passwordInputRef} id='password' label='Password' variant='outlined' sx={{ m: 2 }} />
+					<TextField
+						inputRef={repasswordInputRef}
+						id='repassword'
+						label='Re-Password'
+						variant='outlined'
+						sx={{ m: 2 }}
+					/>
 					<Button variant='contained' onClick={buttonRegisterHandler} sx={{ m: 2 }}>
 						Zarejestruj
 					</Button>
