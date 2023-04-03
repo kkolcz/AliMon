@@ -4,6 +4,8 @@ import './index.css'
 
 import { CssBaseline, createTheme, ThemeProvider } from '@mui/material'
 
+import { BrowserRouter } from 'react-router-dom'
+
 import App from './App'
 
 const theme = createTheme({
@@ -38,7 +40,9 @@ root.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<App />
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
 		</ThemeProvider>
 	</React.StrictMode>
 )

@@ -2,19 +2,21 @@ import React, { useRef } from 'react'
 
 import { Button, Paper, TextField } from '@mui/material'
 
-import { loginUser } from '../../../firebase'
+import { useUserAuth } from '../../context/UserAuthContext'
 
 const Login = props => {
 	const inputEmailRef = useRef()
 	const inputPasswordRef = useRef()
+
+	const { logIn, user } = useUserAuth()
+
 	const buttonLoginHandler = async () => {
-		// props.onLogin(true)
 		const inputEmail = inputEmailRef.current.value
 		const inputPassword = inputPasswordRef.current.value
 
-		const res = await loginUser(inputEmail, inputPassword)
-		await console.log(res.user.email)
-		await console.log(res.user.uid)
+		const res = await logIn(inputEmail, inputPassword)
+		await console.log(res)
+		console.log(user)
 	}
 
 	return (
