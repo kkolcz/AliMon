@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
+import { Provider } from 'react-redux'
+import store from './store/store'
+
 import { CssBaseline, createTheme, ThemeProvider } from '@mui/material'
 
 import { BrowserRouter } from 'react-router-dom'
@@ -37,12 +40,14 @@ const theme = createTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-	<React.StrictMode>
+	// <React.StrictMode>
+	<Provider store={store}>
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<BrowserRouter>
 				<App />
 			</BrowserRouter>
 		</ThemeProvider>
-	</React.StrictMode>
+	</Provider>
+	// </React.StrictMode>
 )

@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 
+import { useSelector } from 'react-redux'
+import { selectShipments } from '../../../store/shipmentSlice'
+
 import { Box, Button } from '@mui/material'
 
 import Table from '@mui/material/Table'
@@ -22,13 +25,15 @@ import Paper from '@mui/material/Paper'
 // ]
 
 const ShipmentList = () => {
-	const [shipmentList, setShipmentList] = useState([
-		{ id: 1, name: 'pack1', number: 'AAAAAAAhhAA', date: '22.22.22' },
-		{ id: 2, name: 'pack2', number: 'AAAGAAAAjAA', date: '22.22.22' },
-		{ id: 3, name: 'pack3', number: 'AAAADFAAAAA', date: '22.22.22' },
-		{ id: 4, name: 'pack4', number: 'AAAADGAAAAA', date: '22.22.22' },
-		{ id: 5, name: 'pack5', number: 'AAAAAAGFfAA', date: '22.22.22' },
-	])
+	let shipmentList = useSelector(selectShipments)
+
+	// const [shipmentList, setShipmentList] = useState([
+	// 	{ id: 1, name: 'pack1', number: 'AAAAAAAhhAA', date: '22.22.22' },
+	// 	{ id: 2, name: 'pack2', number: 'AAAGAAAAjAA', date: '22.22.22' },
+	// 	{ id: 3, name: 'pack3', number: 'AAAADFAAAAA', date: '22.22.22' },
+	// 	{ id: 4, name: 'pack4', number: 'AAAADGAAAAA', date: '22.22.22' },
+	// 	{ id: 5, name: 'pack5', number: 'AAAAAAGFfAA', date: '22.22.22' },
+	// ])
 
 	return (
 		<Box>

@@ -5,7 +5,8 @@ import { auth } from '../../firebase'
 const userAuthContext = createContext()
 
 export function UserAuthContextProvider({ children }) {
-	const [user, setUser] = useState({})
+	const [user, setUser] = useState('')
+	const [isLogin, setIsLogin] = useState(false)
 
 	function logIn(email, password) {
 		return signInWithEmailAndPassword(auth, email, password)
@@ -23,6 +24,7 @@ export function UserAuthContextProvider({ children }) {
 		const unsubscribe = onAuthStateChanged(auth, currentUser => {
 			console.log('Auth: ', currentUser)
 			setUser(currentUser)
+			setIsLogin(true)
 		})
 
 		return () => {
@@ -30,7 +32,9 @@ export function UserAuthContextProvider({ children }) {
 		}
 	}, [])
 
-	return <userAuthContext.Provider value={{ user, logIn, signUp, logOut }}>{children}</userAuthContext.Provider>
+	return (
+		<userAuthContext.Provider value={{ user, isLogin, logIn, signUp, logOut }}>{children}</userAuthContext.Provider>
+	)
 }
 
 export function useUserAuth() {

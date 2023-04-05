@@ -3,10 +3,13 @@ import React, { useRef } from 'react'
 import { Button, Paper, TextField } from '@mui/material'
 
 import { useUserAuth } from '../../context/UserAuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Login = props => {
 	const inputEmailRef = useRef()
 	const inputPasswordRef = useRef()
+
+	const navigate = useNavigate()
 
 	const { logIn, user } = useUserAuth()
 
@@ -16,6 +19,9 @@ const Login = props => {
 
 		const res = await logIn(inputEmail, inputPassword)
 		await console.log(res)
+		if (user) {
+			navigate('/home')
+		}
 		console.log(user)
 	}
 

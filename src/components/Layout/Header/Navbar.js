@@ -5,12 +5,19 @@ import { Box } from '@mui/system'
 
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice'
 
+import { useUserAuth } from '../../context/UserAuthContext'
+
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
 	justifyContent: 'space-between',
 })
 
-const Navbar = () => {
+const Navbar = props => {
+	const { logOut } = useUserAuth()
+
+	const logoutHandler = () => {
+		logOut()
+	}
 	return (
 		<AppBar position='static'>
 			<StyledToolbar>
@@ -19,7 +26,7 @@ const Navbar = () => {
 					<Typography variant='h6'>AliMon - Monitoring Paczek</Typography>
 				</Box>
 				<Box>
-					<Button variant='contained' color='secondary'>
+					<Button variant='contained' color='secondary' onClick={logoutHandler}>
 						Wyloguj
 					</Button>
 				</Box>
