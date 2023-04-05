@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 
 import { Button, Paper, TextField } from '@mui/material'
 
-import { useUserAuth } from '../../context/UserAuthContext'
+import { useUserAuth } from '../../../context/UserAuthContext'
 
 const Register = () => {
 	const loginInputRef = useRef()
@@ -13,12 +13,17 @@ const Register = () => {
 	const { signUp } = useUserAuth()
 
 	const buttonRegisterHandler = async () => {
-		// const loginInput = loginInputRef.current.value
+		const loginInput = loginInputRef.current.value
 		const emailInput = emailInputRef.current.value
 		const passwordInput = passwordInputRef.current.value
-		// const repasswordInput = repasswordInputRef.current.value
+		const repasswordInput = repasswordInputRef.current.value
 
-		await signUp(emailInput, passwordInput)
+		if (passwordInput === repasswordInput) {
+			await signUp(emailInput, passwordInput)
+			//TODO: utworzenie użytkownika w bazie danych firebase
+		} else {
+			return
+		}
 	}
 
 	return (

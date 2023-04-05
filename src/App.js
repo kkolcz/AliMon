@@ -6,9 +6,9 @@ import Account from './components/Account/Account'
 
 import { Routes, Route } from 'react-router-dom'
 
-import { UserAuthContextProvider } from './components/context/UserAuthContext'
+import { UserAuthContextProvider } from './context/UserAuthContext'
 import Welcome from './components/Welcome/Welcome'
-import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './ProtectedRoute'
 
 function App() {
 	// const [isLogin, setIsLogin] = useState(false)

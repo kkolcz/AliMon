@@ -5,7 +5,7 @@ import { Box } from '@mui/system'
 
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice'
 
-import { useUserAuth } from '../../context/UserAuthContext'
+import { useUserAuth } from '../../../context/UserAuthContext'
 
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',

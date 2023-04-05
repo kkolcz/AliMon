@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { Box, CircularProgress } from '@mui/material'
 
 import { query, collection, getDocs, where, orderBy } from 'firebase/firestore'
-import { db } from '../../firebase'
+import { db } from '../../Firebase/firebase'
 
 import { useDispatch } from 'react-redux'
 import { set_shipments_list } from '../../store/shipmentSlice'
@@ -11,7 +11,7 @@ import { set_shipments_list } from '../../store/shipmentSlice'
 import ShipmentList from './ShipmentList/ShipmentList'
 import ShipmentAdd from './ShopmentAdd/ShipmentAdd'
 
-import { useUserAuth } from '../context/UserAuthContext'
+import { useUserAuth } from '../../context/UserAuthContext'
 import { Navigate, useNavigate } from 'react-router-dom'
 
 const Home = () => {
