@@ -17,11 +17,11 @@ const Login = props => {
 		const inputEmail = inputEmailRef.current.value
 		const inputPassword = inputPasswordRef.current.value
 
-		const res = await logIn(inputEmail, inputPassword)
-		await console.log(res)
-		if (user) {
-			navigate('/home')
-		}
+		await logIn(inputEmail, inputPassword).then(res => {
+			if (user) {
+				navigate('/home')
+			}
+		})
 		console.log(user)
 	}
 

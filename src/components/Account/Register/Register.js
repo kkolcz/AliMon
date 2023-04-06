@@ -4,6 +4,9 @@ import { Button, Paper, TextField } from '@mui/material'
 
 import { useUserAuth } from '../../../context/UserAuthContext'
 
+import { db } from '../../../Firebase/firebase'
+import { collection, addDoc } from 'firebase/firestore'
+
 const Register = () => {
 	const loginInputRef = useRef()
 	const emailInputRef = useRef()
@@ -19,7 +22,15 @@ const Register = () => {
 		const repasswordInput = repasswordInputRef.current.value
 
 		if (passwordInput === repasswordInput) {
-			await signUp(emailInput, passwordInput)
+			await signUp(emailInput, passwordInput).then(res => {
+				console.log('res')
+				console.log(res.user.uid)
+
+				const newUser = { login: loginInput, userUID: res.user.uid }
+				const dbRef = collection(db, 'users')
+				addDoc(dbRef, newUser)
+			})
+
 			//TODO: utworzenie użytkownika w bazie danych firebase
 		} else {
 			return

@@ -6,10 +6,13 @@ import { useUserAuth } from '../../../context/UserAuthContext'
 
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 import { db } from '../../../Firebase/firebase'
+import { useDispatch } from 'react-redux'
+import { add_new_shipment } from '../../../store/shipmentSlice'
 
 const ShipmentAdd = () => {
 	const inputNameRef = useRef()
 	const inputNumberRef = useRef()
+	const dispatch = useDispatch()
 
 	const { user } = useUserAuth()
 
@@ -29,10 +32,14 @@ const ShipmentAdd = () => {
 
 	const addNewShipment = async data => {
 		const dbRef = collection(db, 'shipments')
-		const dataa = { userUID: data.userUID, name: data.name, number: data.number, date: '11.11.11' }
+		const newData = { userUID: data.userUID, name: data.name, number: data.number, date: '11.11.11' }
 
-		await addDoc(dbRef, dataa).then(() => {
+		await addDoc(dbRef, newData).then(res => {
+			console.log(res.id)
 			console.log('utworzono')
+			dispatch(
+				add_new_shipment({ id: res.id, userUID: data.userUID, name: data.name, number: data.number, date: '11.11.11' })
+			)
 		})
 
 		// await addDoc(doc(db, 'shipments2'), {

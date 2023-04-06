@@ -33,9 +33,9 @@ const Home = () => {
 			getDocs(q)
 				.then(res => {
 					res.forEach(doc => {
-						// console.log(doc.data().name)
+						// console.log(doc.id)
 						shipments.push({
-							id: doc.data().id,
+							id: doc.id,
 							name: doc.data().name,
 							number: doc.data().number,
 							date: doc.data().date,

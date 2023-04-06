@@ -18,10 +18,13 @@ const slice = createSlice({
 			// console.log(action.payload)
 			state.shipments = action.payload
 		},
+		add_new_shipment: (state, action) => {
+			state.shipments = [...state.shipments, action.payload]
+		},
 	},
 })
 
-export const { set_shipments_list } = slice.actions
+export const { set_shipments_list, add_new_shipment } = slice.actions
 
 export const selectShipments = state => state.shipment.shipments
 

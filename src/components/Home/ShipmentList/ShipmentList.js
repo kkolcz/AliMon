@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectShipments } from '../../../store/shipmentSlice'
 
+import { doc, deleteDoc, collection } from 'firebase/firestore'
+import { db } from '../../../Firebase/firebase'
+
 import { Box, Button } from '@mui/material'
 
 import Table from '@mui/material/Table'
@@ -26,6 +29,18 @@ import Paper from '@mui/material/Paper'
 
 const ShipmentList = () => {
 	let shipmentList = useSelector(selectShipments)
+
+	const deleteShipmentHandler = async e => {
+		console.log(e.target.id)
+
+		await deleteDoc(doc(db, 'shipments', e.target.id)).then(res => {
+			console.log(res)
+		})
+	}
+
+	// shipmentList.map(row => {
+	// 	console.log(row.id)
+	// })
 
 	// const [shipmentList, setShipmentList] = useState([
 	// 	{ id: 1, name: 'pack1', number: 'AAAAAAAhhAA', date: '22.22.22' },
@@ -61,7 +76,9 @@ const ShipmentList = () => {
 								<TableCell align='right'>{row.number}</TableCell>
 								<TableCell align='right'>{row.date}</TableCell>
 								<TableCell align='right'>
-									<Button variant='contained'>X</Button>
+									<Button variant='contained' id={row.id} onClick={deleteShipmentHandler}>
+										X
+									</Button>
 								</TableCell>
 							</TableRow>
 						))}
