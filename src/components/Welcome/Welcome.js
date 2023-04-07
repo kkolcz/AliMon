@@ -1,13 +1,15 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import WelcomeCard from './WelcomeCard'
 
 const Welcome = () => {
 	return (
 		<Fragment>
 			<Box display='flex' flexDirection='column' alignItems='center' m='1rem' p='1rem'>
-				<h1>Witaj na stronie AliMon - Monitoring Paczek</h1>
+				<Box sx={{ m: 5 }}>
+					<Typography variant='h4'>Witaj na AliMon</Typography>
+					<Typography variant='h5'>Umożliwiamy sprawniejsze zarządzanie paczkami.</Typography>
+				</Box>
 				<Box sx={{ display: 'flex' }}>
 					<WelcomeCard
 						sx={{ m: 2, minWidth: 250, maxWidth: 275, maxHeight: 275 }}
@@ -21,7 +23,7 @@ const Welcome = () => {
 					/>
 					<WelcomeCard
 						sx={{ m: 2, minWidth: 250, maxWidth: 275, maxHeight: 275 }}
-						text1={{ variant: 'h5', color: 'primary', text: 'Jesteś już urzytkownikiem?' }}
+						text1={{ variant: 'h5', color: 'primary', text: 'Jesteś już użytkownikiem?' }}
 						text2={{
 							sx: { mt: 2, fontSize: 16 },
 							color: 'secondary',
@@ -30,7 +32,7 @@ const Welcome = () => {
 						button={{ text: 'Zaloguj!', link: '/account' }}
 					/>
 				</Box>
-				<Box>
+				{/* <Box>
 					<ul>
 						<li>
 							<Link to='/home'>Home</Link>
@@ -39,7 +41,7 @@ const Welcome = () => {
 							<Link to='/account'>Account</Link>
 						</li>
 					</ul>
-				</Box>
+				</Box> */}
 			</Box>
 		</Fragment>
 	)

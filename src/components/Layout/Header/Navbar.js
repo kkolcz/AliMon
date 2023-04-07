@@ -6,6 +6,7 @@ import { Box } from '@mui/system'
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice'
 
 import { useUserAuth } from '../../../context/UserAuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
@@ -14,14 +15,20 @@ const StyledToolbar = styled(Toolbar)({
 
 const Navbar = props => {
 	const { logOut } = useUserAuth()
+	const navigate = useNavigate()
 
 	const logoutHandler = () => {
 		logOut()
 	}
+
+	const navBarClickHabdler = () => {
+		navigate('/')
+	}
+
 	return (
 		<AppBar position='static'>
 			<StyledToolbar>
-				<Box display='flex' alignItems='center' gap={2}>
+				<Box onClick={navBarClickHabdler} sx={{ cursor: 'pointer' }} display='flex' alignItems='center' gap={2}>
 					<LocalPostOfficeIcon />
 					<Typography variant='h6'>AliMon - Monitoring Paczek</Typography>
 				</Box>
