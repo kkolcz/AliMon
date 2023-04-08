@@ -2,11 +2,16 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../Firebase/firebase'
 
+import { useDispatch } from 'react-redux'
+import { set_signout } from '../store/userSlice'
+
 const userAuthContext = createContext()
 
 export function UserAuthContextProvider({ children }) {
 	const [user, setUser] = useState('')
 	const [isLogin, setIsLogin] = useState(false)
+
+	const dispatch = useDispatch()
 
 	function logIn(email, password) {
 		return signInWithEmailAndPassword(auth, email, password)
@@ -17,6 +22,7 @@ export function UserAuthContextProvider({ children }) {
 	}
 
 	function logOut() {
+		dispatch(set_signout())
 		return signOut(auth)
 	}
 

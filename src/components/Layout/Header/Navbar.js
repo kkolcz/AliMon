@@ -8,12 +8,17 @@ import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice'
 import { useUserAuth } from '../../../context/UserAuthContext'
 import { useNavigate } from 'react-router-dom'
 
+import { useSelector } from 'react-redux'
+import { selectIsAuth } from '../../../store/userSlice'
+
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
 	justifyContent: 'space-between',
 })
 
 const Navbar = props => {
+	const isAuth = useSelector(selectIsAuth)
+	console.log('IsAuth', isAuth)
 	const { logOut } = useUserAuth()
 	const navigate = useNavigate()
 
@@ -21,21 +26,23 @@ const Navbar = props => {
 		logOut()
 	}
 
-	const navBarClickHabdler = () => {
+	const navBarClickHandler = () => {
 		navigate('/')
 	}
 
 	return (
 		<AppBar position='static'>
 			<StyledToolbar>
-				<Box onClick={navBarClickHabdler} sx={{ cursor: 'pointer' }} display='flex' alignItems='center' gap={2}>
+				<Box onClick={navBarClickHandler} sx={{ cursor: 'pointer' }} display='flex' alignItems='center' gap={2}>
 					<LocalPostOfficeIcon />
 					<Typography variant='h6'>AliMon - Monitoring Paczek</Typography>
 				</Box>
 				<Box>
-					<Button variant='contained' color='secondary' onClick={logoutHandler}>
-						Wyloguj
-					</Button>
+					{isAuth && (
+						<Button variant='contained' color='secondary' onClick={logoutHandler}>
+							Wyloguj
+						</Button>
+					)}
 				</Box>
 			</StyledToolbar>
 		</AppBar>

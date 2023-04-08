@@ -5,9 +5,15 @@ import { Button, Paper, TextField } from '@mui/material'
 import { useUserAuth } from '../../../context/UserAuthContext'
 import { useNavigate } from 'react-router-dom'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { selectIsAuth, set_signin } from '../../../store/userSlice'
+
 const Login = props => {
 	const inputEmailRef = useRef()
 	const inputPasswordRef = useRef()
+
+	const dispatch = useDispatch()
+	const isAuth = useSelector(selectIsAuth)
 
 	const navigate = useNavigate()
 
@@ -17,12 +23,15 @@ const Login = props => {
 		const inputEmail = inputEmailRef.current.value
 		const inputPassword = inputPasswordRef.current.value
 
-		await logIn(inputEmail, inputPassword).then(res => {
-			if (user) {
-				navigate('/home')
-			}
+		await logIn(inputEmail, inputPassword).then(userCredential => {
+			const email = userCredential.user.email
+
+			dispatch(set_signin(email))
+			navigate('/home')
+
+			// if (isAuth === true) {
+			// }
 		})
-		console.log(user)
 	}
 
 	return (

@@ -19,7 +19,7 @@ const Welcome = () => {
 							color: 'secondary',
 							text: 'Możesz je założyć za darmo, system AliMon jest darmowy!',
 						}}
-						button={{ text: 'Zarejestruj się!', link: '/account' }}
+						button={{ text: 'Zarejestruj się!', link: '/account/register' }}
 					/>
 					<WelcomeCard
 						sx={{ m: 2, minWidth: 250, maxWidth: 275, maxHeight: 275 }}
@@ -29,7 +29,7 @@ const Welcome = () => {
 							color: 'secondary',
 							text: 'Przejdź do strony logowania',
 						}}
-						button={{ text: 'Zaloguj!', link: '/account' }}
+						button={{ text: 'Zaloguj!', link: '/account/login' }}
 					/>
 				</Box>
 				{/* <Box>

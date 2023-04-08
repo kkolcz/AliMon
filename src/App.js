@@ -1,14 +1,15 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 
 import Home from './components/Home/Home'
 import Layout from './components/Layout/Layout'
 import Account from './components/Account/Account'
+import Error from './components/Error/Error'
 
 import { Routes, Route } from 'react-router-dom'
 
 import { UserAuthContextProvider } from './context/UserAuthContext'
 import Welcome from './components/Welcome/Welcome'
-import ProtectedRoute from './ProtectedRoute'
+// import ProtectedRoute from './ProtectedRoute'
 
 function App() {
 	// const [isLogin, setIsLogin] = useState(false)
@@ -26,7 +27,8 @@ function App() {
 					<Routes>
 						<Route path='/' element={<Welcome />} />
 						<Route path='/home' element={<Home />} />
-						<Route path='/account' element={<Account onLogin={loginHandler} />} />
+						<Route path='/account/:option' element={<Account onLogin={loginHandler} />} />
+						<Route path='*' element={<Error code='404' title='Something go wrong!' />} />
 						{/* {isLogin && }
 					{!isLogin && } */}
 					</Routes>

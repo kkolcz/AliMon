@@ -12,7 +12,7 @@ import ShipmentList from './ShipmentList/ShipmentList'
 import ShipmentAdd from './ShopmentAdd/ShipmentAdd'
 
 import { useUserAuth } from '../../context/UserAuthContext'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -52,7 +52,7 @@ const Home = () => {
 			getShipments(user.uid)
 		}
 		if (user == null) {
-			navigate('/account')
+			navigate('/')
 		}
 		// console.log(shipments)
 	}, [user])
