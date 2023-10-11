@@ -32,16 +32,6 @@ const Welcome = () => {
 						button={{ text: 'Zaloguj!', link: '/account/login' }}
 					/>
 				</Box>
-				{/* <Box>
-					<ul>
-						<li>
-							<Link to='/home'>Home</Link>
-						</li>
-						<li>
-							<Link to='/account'>Account</Link>
-						</li>
-					</ul>
-				</Box> */}
 			</Box>
 		</Fragment>
 	)

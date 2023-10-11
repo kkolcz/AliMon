@@ -4,12 +4,14 @@ import { auth } from '../Firebase/firebase'
 
 import { useDispatch } from 'react-redux'
 import { set_signout, set_signin } from '../store/userSlice'
+import { useNavigate } from 'react-router-dom'
 
 const userAuthContext = createContext()
 
 export function UserAuthContextProvider({ children }) {
 	const [user, setUser] = useState('')
 	const [isLogin, setIsLogin] = useState(false)
+	const navigate = useNavigate()
 	// console.log(isLogin)
 
 	const dispatch = useDispatch()
@@ -23,7 +25,8 @@ export function UserAuthContextProvider({ children }) {
 	}
 
 	function logOut() {
-		dispatch(set_signout())
+		// dispatch(set_signout())
+		setIsLogin(false)
 		return signOut(auth)
 	}
 
@@ -31,9 +34,10 @@ export function UserAuthContextProvider({ children }) {
 		const unsubscribe = onAuthStateChanged(auth, currentUser => {
 			console.log('Auth: ', currentUser)
 			setUser(currentUser)
-			setIsLogin(true)
 			if (currentUser) {
-				dispatch(set_signin(currentUser.email))
+				// dispatch(set_signin(currentUser.email))
+				setIsLogin(true)
+				navigate('/home')
 			}
 		})
 

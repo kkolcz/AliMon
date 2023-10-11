@@ -17,9 +17,9 @@ const StyledToolbar = styled(Toolbar)({
 })
 
 const Navbar = props => {
-	const isAuth = useSelector(selectIsAuth)
-	console.log('IsAuth', isAuth)
-	const { logOut } = useUserAuth()
+	// const isAuth = useSelector(selectIsAuth)
+	// console.log('IsAuth', isAuth)
+	const { logOut, isLogin } = useUserAuth()
 	const navigate = useNavigate()
 
 	const logoutHandler = () => {
@@ -38,7 +38,7 @@ const Navbar = props => {
 					<Typography variant='h6'>AliMon - Monitoring Paczek</Typography>
 				</Box>
 				<Box>
-					{isAuth && (
+					{isLogin && (
 						<Button variant='contained' color='secondary' onClick={logoutHandler}>
 							Wyloguj
 						</Button>

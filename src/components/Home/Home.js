@@ -18,7 +18,7 @@ const Home = () => {
 	const [isLoaded, setIsLoaded] = useState(false)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { user, isLogin } = useUserAuth()
+	const { user } = useUserAuth()
 	let shipments = []
 
 	useEffect(() => {
@@ -51,7 +51,7 @@ const Home = () => {
 		if (user) {
 			getShipments(user.uid)
 		}
-		if (user == null) {
+		if (!user) {
 			navigate('/')
 		}
 		// console.log(shipments)

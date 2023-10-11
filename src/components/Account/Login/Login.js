@@ -13,7 +13,7 @@ const Login = props => {
 	const inputPasswordRef = useRef()
 
 	const dispatch = useDispatch()
-	const isAuth = useSelector(selectIsAuth)
+	// const isAuth = useSelector(selectIsAuth)
 
 	const navigate = useNavigate()
 
@@ -26,7 +26,7 @@ const Login = props => {
 		await logIn(inputEmail, inputPassword).then(userCredential => {
 			const email = userCredential.user.email
 
-			dispatch(set_signin(email))
+			// dispatch(set_signin(email))
 			navigate('/home')
 
 			// if (isAuth === true) {

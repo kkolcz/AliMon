@@ -22,8 +22,8 @@ const slice = createSlice({
 	},
 })
 
-export const { set_signin, set_signout } = slice.actions
+// export const { set_signin, set_signout } = slice.actions
 
-export const selectIsAuth = state => state.user.isAuth
+// export const selectIsAuth = state => state.user.isAuth
 
 export default slice.reducer
