@@ -4,7 +4,7 @@ import { Button, Card, TextField } from '@mui/material'
 
 import { useUserAuth } from '../../../context/UserAuthContext'
 
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
+import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../../../Firebase/firebase'
 import { useDispatch } from 'react-redux'
 import { add_new_shipment } from '../../../store/shipmentSlice'
@@ -25,7 +25,7 @@ const ShipmentAdd = () => {
 		}
 		console.log(user.uid)
 		console.log(inputName + ' ' + inputNumber)
-		//TODO: utworzenie nowej paczki w bazie danych
+		// TODO: utworzenie nowej paczki w bazie danych
 		const newShipment = { userUID: user.uid, name: inputName, number: inputNumber }
 		addNewShipment(newShipment)
 	}
@@ -41,13 +41,6 @@ const ShipmentAdd = () => {
 				add_new_shipment({ id: res.id, userUID: data.userUID, name: data.name, number: data.number, date: '11.11.11' })
 			)
 		})
-
-		// await addDoc(doc(db, 'shipments2'), {
-		// 	userUID: data.userUID,
-		// 	name: data.name,
-		// 	number: data.number,
-		// })
-		// console.log('utworzono')
 	}
 
 	return (
@@ -55,7 +48,6 @@ const ShipmentAdd = () => {
 			sx={{
 				display: 'flex',
 				marginTop: '20px',
-				// border: '1px dashed grey',
 			}}>
 			<TextField inputRef={inputNameRef} id='nazwa' label='Nazwa paczki' variant='outlined' sx={{ m: 2 }} />
 			<TextField inputRef={inputNumberRef} id='nazwa' label='Numer paczki' variant='outlined' sx={{ m: 2 }} />

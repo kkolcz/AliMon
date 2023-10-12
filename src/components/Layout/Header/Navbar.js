@@ -8,17 +8,12 @@ import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice'
 import { useUserAuth } from '../../../context/UserAuthContext'
 import { useNavigate } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
-import { selectIsAuth } from '../../../store/userSlice'
-
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
 	justifyContent: 'space-between',
 })
 
 const Navbar = props => {
-	// const isAuth = useSelector(selectIsAuth)
-	// console.log('IsAuth', isAuth)
 	const { logOut, isLogin } = useUserAuth()
 	const navigate = useNavigate()
 

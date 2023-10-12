@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 
 import { Box, CircularProgress } from '@mui/material'
 
-import { query, collection, getDocs, where, orderBy } from 'firebase/firestore'
+import { query, collection, getDocs, where } from 'firebase/firestore'
 import { db } from '../../Firebase/firebase'
 
 import { useDispatch } from 'react-redux'
@@ -23,17 +23,10 @@ const Home = () => {
 
 	useEffect(() => {
 		const getShipments = async userid => {
-			// const userid = await user.uid
-			// const q = query(collection(db, 'shipments'))
-			// const docs = getDocs(q)
-			// console.log(docs)
-
-			// const q = query(collection(db, 'shipments'), where('userUID', '==', user))
 			const q = query(collection(db, 'shipments'), where('userUID', '==', userid))
 			getDocs(q)
 				.then(res => {
 					res.forEach(doc => {
-						// console.log(doc.id)
 						shipments.push({
 							id: doc.id,
 							name: doc.data().name,
@@ -54,7 +47,6 @@ const Home = () => {
 		if (!user) {
 			navigate('/')
 		}
-		// console.log(shipments)
 	}, [user])
 
 	return (

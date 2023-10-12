@@ -9,8 +9,6 @@ import { useParams } from 'react-router-dom'
 const Account = props => {
 	const [isRegister, setIsRegister] = useState(false)
 
-	const buttonLoginHandler = () => {}
-
 	const buttonRegisterHandler = () => {
 		setIsRegister(!isRegister)
 	}
