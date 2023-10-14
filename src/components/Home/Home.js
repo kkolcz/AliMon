@@ -31,6 +31,7 @@ const Home = () => {
 							id: doc.id,
 							name: doc.data().name,
 							number: doc.data().number,
+							description: doc.data().description,
 							date: doc.data().date,
 						})
 					})
