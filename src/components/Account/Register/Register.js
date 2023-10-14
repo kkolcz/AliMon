@@ -22,14 +22,33 @@ const Register = () => {
 		const repasswordInput = repasswordInputRef.current.value
 
 		if (passwordInput === repasswordInput) {
-			await signUp(emailInput, passwordInput).then(res => {
-				console.log('res')
-				console.log(res.user.uid)
+			await signUp(emailInput, passwordInput)
+				.then(res => {
+					console.log('res')
+					console.log(res.user.uid)
 
-				const newUser = { login: loginInput, userUID: res.user.uid }
-				const dbRef = collection(db, 'users')
-				addDoc(dbRef, newUser)
-			})
+					const newUser = { login: loginInput, userUID: res.user.uid }
+					const dbRef = collection(db, 'users')
+					addDoc(dbRef, newUser)
+				})
+				.catch(err => {
+					console.warn(err)
+					const errorCode = err.code
+
+					switch (errorCode) {
+						case 'auth/invalid-email':
+							alert('Nieprawidłowy format adresu!')
+							break
+						case 'auth/weak-password':
+							alert('Minimalna wymagana długość hasła to 6 znaków!')
+							break
+						case 'auth/too-many-requests':
+							alert('Zbyt dużo prób logowania!')
+							break
+						default:
+							alert(`Nieznany błąd! ${errorCode}`)
+					}
+				})
 
 			//TODO: utworzenie użytkownika w bazie danych firebase
 		} else {

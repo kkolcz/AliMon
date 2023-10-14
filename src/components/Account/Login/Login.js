@@ -17,9 +17,31 @@ const Login = props => {
 		const inputEmail = inputEmailRef.current.value
 		const inputPassword = inputPasswordRef.current.value
 
-		await logIn(inputEmail, inputPassword).then(userCredential => {
-			navigate('/home')
-		})
+		await logIn(inputEmail, inputPassword)
+			.then(userCredential => {
+				navigate('/home')
+			})
+			.catch(err => {
+				console.warn(err)
+				const errorCode = err.code
+
+				switch (errorCode) {
+					case 'auth/invalid-email':
+						alert('Nieprawidłowy adres email!')
+						break
+					case 'auth/user-not-found':
+						alert('Nie znaleziono użytkownika o podanym adresie email!')
+						break
+					case 'auth/wrong-password':
+						alert('Nieprawidłowe hasło!')
+						break
+					case 'auth/too-many-requests':
+						alert('Zbyt dużo prób logowania!')
+						break
+					default:
+						alert(`Nieznany błąd! ${errorCode}`)
+				}
+			})
 	}
 
 	return (
