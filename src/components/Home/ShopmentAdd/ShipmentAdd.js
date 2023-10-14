@@ -22,7 +22,7 @@ const ShipmentAdd = () => {
 		const inputNumber = inputNumberRef.current.value
 		const inputDescription = inputDescriptionRef.current.value
 
-		if (inputName === '' || inputNumber === '') {
+		if (inputName === '' || inputNumber === '' || inputDescription === '') {
 			return
 		}
 		console.log(user.uid)
@@ -30,6 +30,10 @@ const ShipmentAdd = () => {
 		// TODO: utworzenie nowej paczki w bazie danych
 		const newShipment = { userUID: user.uid, name: inputName, number: inputNumber, description: inputDescription }
 		addNewShipment(newShipment)
+
+		inputNameRef.current.value = ''
+		inputNumberRef.current.value = ''
+		inputDescriptionRef.current.value = ''
 	}
 
 	const addNewShipment = async data => {
