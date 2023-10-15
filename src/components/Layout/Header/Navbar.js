@@ -22,13 +22,13 @@ const Navbar = props => {
 	}
 
 	const navBarClickHandler = () => {
-		navigate('/')
+		// navigate('/')
 	}
 
 	return (
 		<AppBar position='static'>
 			<StyledToolbar>
-				<Box onClick={navBarClickHandler} sx={{ cursor: 'pointer' }} display='flex' alignItems='center' gap={2}>
+				<Box onClick={navBarClickHandler} sx={{ cursor: 'default' }} display='flex' alignItems='center' gap={2}>
 					<LocalPostOfficeIcon />
 					<Typography variant='h6'>AliMon - Monitoring Paczek</Typography>
 				</Box>
