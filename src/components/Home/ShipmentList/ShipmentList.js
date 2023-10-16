@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { useSelector } from 'react-redux'
-import { selectShipments } from '../../../store/shipmentSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectShipments, delete_shipment } from '../../../store/shipmentSlice'
 
 import { doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../../../Firebase/firebase'
@@ -18,11 +18,13 @@ import Paper from '@mui/material/Paper'
 
 const ShipmentList = () => {
 	let shipmentList = useSelector(selectShipments)
+	const dispatch = useDispatch()
 
 	const deleteShipmentHandler = async e => {
 		console.log(e.target.id)
 
 		await deleteDoc(doc(db, 'shipments', e.target.id)).then(res => {
+			dispatch(delete_shipment(e.target.id))
 			console.log(res)
 		})
 	}

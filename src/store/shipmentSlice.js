@@ -21,10 +21,14 @@ const slice = createSlice({
 		add_new_shipment: (state, action) => {
 			state.shipments = [...state.shipments, action.payload]
 		},
+		delete_shipment: (state, action) => {
+			console.log(action.payload)
+			state.shipments = state.shipments.filter(element => element.id !== action.payload)
+		},
 	},
 })
 
-export const { set_shipments_list, add_new_shipment } = slice.actions
+export const { set_shipments_list, add_new_shipment, delete_shipment } = slice.actions
 
 export const selectShipments = state => state.shipment.shipments
 
