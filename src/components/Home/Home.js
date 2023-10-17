@@ -48,6 +48,8 @@ const Home = () => {
 		if (!user) {
 			navigate('/')
 		}
+
+		console.log(shipments)
 	}, [user])
 
 	return (

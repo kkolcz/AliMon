@@ -21,14 +21,21 @@ const ShipmentAdd = () => {
 		const inputName = inputNameRef.current.value
 		const inputNumber = inputNumberRef.current.value
 		const inputDescription = inputDescriptionRef.current.value
+		const date = new Date().toLocaleString()
 
-		if (inputName === '' || inputNumber === '' || inputDescription === '') {
+		if (inputName === '' || inputNumber === '') {
 			return
 		}
 		console.log(user.uid)
 		console.log(inputName + ' ' + inputNumber)
 		// TODO: utworzenie nowej paczki w bazie danych
-		const newShipment = { userUID: user.uid, name: inputName, number: inputNumber, description: inputDescription }
+		const newShipment = {
+			userUID: user.uid,
+			name: inputName,
+			number: inputNumber,
+			description: inputDescription,
+			date: date,
+		}
 		addNewShipment(newShipment)
 
 		inputNameRef.current.value = ''
@@ -38,7 +45,13 @@ const ShipmentAdd = () => {
 
 	const addNewShipment = async data => {
 		const dbRef = collection(db, 'shipments')
-		const newData = { userUID: data.userUID, name: data.name, number: data.number, date: '11.11.11' }
+		const newData = {
+			userUID: data.userUID,
+			name: data.name,
+			number: data.number,
+			description: data.description,
+			date: data.date,
+		}
 
 		await addDoc(dbRef, newData).then(res => {
 			console.log(res.id)
@@ -50,7 +63,7 @@ const ShipmentAdd = () => {
 					name: data.name,
 					number: data.number,
 					description: data.description,
-					date: '11.11.11',
+					date: data.date,
 				})
 			)
 		})
