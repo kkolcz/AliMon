@@ -29,7 +29,7 @@ const Account = props => {
 					{!isRegister && <Login onLogin={props.onLogin} />}
 					{isRegister && <Register />}
 				</Card>
-				<Card
+				<div
 					style={{
 						display: 'flex',
 						justifyContent: 'center',
@@ -38,7 +38,7 @@ const Account = props => {
 					<Button variant='contained' onClick={buttonRegisterHandler} sx={{ m: 2 }}>
 						{!isRegister ? 'Zarejestruj nowe konto' : 'Wróć do logowania'}
 					</Button>
-				</Card>
+				</div>
 			</Box>
 		</Box>
 	)

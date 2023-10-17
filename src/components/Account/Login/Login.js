@@ -47,7 +47,7 @@ const Login = props => {
 	return (
 		<div>
 			<div>
-				<h1>Login</h1>
+				<h1 style={{ textAlign: 'center' }}>Logowanie</h1>
 				<Paper
 					sx={{
 						display: 'flex',
@@ -56,7 +56,14 @@ const Login = props => {
 						padding: 10,
 					}}>
 					<TextField inputRef={inputEmailRef} id='email' label='Email' variant='outlined' sx={{ m: 2 }} />
-					<TextField inputRef={inputPasswordRef} id='password' label='Password' variant='outlined' sx={{ m: 2 }} />
+					<TextField
+						inputRef={inputPasswordRef}
+						id='password'
+						type='password'
+						label='Password'
+						variant='outlined'
+						sx={{ m: 2 }}
+					/>
 					<Button variant='contained' onClick={buttonLoginHandler} sx={{ m: 2 }}>
 						Zaloguj
 					</Button>

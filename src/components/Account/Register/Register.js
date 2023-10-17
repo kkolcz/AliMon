@@ -58,7 +58,7 @@ const Register = () => {
 
 	return (
 		<div>
-			<h1>Rejestracja</h1>
+			<h1 style={{ textAlign: 'center' }}>Rejestracja</h1>
 			<div>
 				<Paper
 					sx={{
@@ -77,10 +77,18 @@ const Register = () => {
 					}}> */}
 					<TextField inputRef={loginInputRef} id='login' label='Login' variant='outlined' sx={{ m: 2 }} />
 					<TextField inputRef={emailInputRef} id='email' label='Email' variant='outlined' sx={{ m: 2 }} />
-					<TextField inputRef={passwordInputRef} id='password' label='Password' variant='outlined' sx={{ m: 2 }} />
+					<TextField
+						inputRef={passwordInputRef}
+						id='password'
+						type='password'
+						label='Password'
+						variant='outlined'
+						sx={{ m: 2 }}
+					/>
 					<TextField
 						inputRef={repasswordInputRef}
 						id='repassword'
+						type='password'
 						label='Re-Password'
 						variant='outlined'
 						sx={{ m: 2 }}
