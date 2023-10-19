@@ -20,30 +20,30 @@ import TravelExploreIcon from '@mui/icons-material/TravelExplore'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
-const ShipmentList = () => {
+const ShipmentList = props => {
 	let shipmentList = useSelector(selectShipments)
 	const dispatch = useDispatch()
 
-	const deleteShipmentHandler = async e => {
-		console.log(e.target.id)
+	const deleteShipmentHandler = id => async () => {
+		// console.log(id)
 
-		await deleteDoc(doc(db, 'shipments', e.target.id)).then(res => {
-			dispatch(delete_shipment(e.target.id))
-			console.log(res)
+		await deleteDoc(doc(db, 'shipments', id)).then(res => {
+			dispatch(delete_shipment(id))
+			// console.log(res)
 		})
 	}
 
-	const trackingShipmentHandler = e => {
+	const trackingShipmentHandler = number => () => {
 		// window.open('someLink', '_blank')
-		const url = `https://alipaczka.pl/?track=${e.target.id}`
+		const url = `https://alipaczka.pl/?track=${number}`
 		window.open(url, '_blank', 'noopener,noreferrer')
 		// if (newWindow) newWindow.opener = null
-
-		console.log(e.target.id)
+		// console.log(e)
 	}
 
-	const editShipmentHandler = e => {
-		console.log(e.target.id)
+	const editShipmentHandler = shipment => () => {
+		// console.log(id)
+		props.onEditShipment(shipment)
 	}
 
 	return (
@@ -77,17 +77,21 @@ const ShipmentList = () => {
 										{row.description}
 									</TableCell>
 									<TableCell width='15%' align='right' style={{ display: 'flex', width: '200px' }}>
-										<Button variant='contained' id={row.id} onClick={deleteShipmentHandler} sx={{ marginLeft: '10px' }}>
+										<Button
+											variant='contained'
+											id={row.id}
+											onClick={deleteShipmentHandler(row.id)}
+											sx={{ marginLeft: '10px' }}>
 											<DeleteIcon />
 										</Button>
 										<Button
 											variant='contained'
 											id={row.number}
-											onClick={trackingShipmentHandler}
+											onClick={trackingShipmentHandler(row.number)}
 											sx={{ marginLeft: '10px' }}>
 											<TravelExploreIcon />
 										</Button>
-										<Button variant='contained' id={row.id} onClick={editShipmentHandler}>
+										<Button variant='contained' id={row.id} onClick={editShipmentHandler(row)}>
 											<EditIcon />
 										</Button>
 									</TableCell>

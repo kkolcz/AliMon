@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
 	const [isLoaded, setIsLoaded] = useState(false)
+	const [isEditingShipment, setIsEditingShipment] = useState(false)
+
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { user } = useUserAuth()
@@ -49,14 +51,18 @@ const Home = () => {
 			navigate('/')
 		}
 
-		console.log(shipments)
+		// console.log(shipments)
 	}, [user])
+
+	const editShipmentHandler = shipment => {
+		setIsEditingShipment(shipment)
+	}
 
 	return (
 		<Fragment>
 			<Box display='flex' flexDirection='column' alignItems='center' m='1rem' p='1rem'>
-				{isLoaded && <ShipmentList />}
-				{isLoaded && <ShipmentAdd />}
+				{isLoaded && <ShipmentList onEditShipment={editShipmentHandler} />}
+				{isLoaded && <ShipmentAdd isEditingShipment={isEditingShipment} />}
 				{!isLoaded && <CircularProgress />}
 			</Box>
 		</Fragment>

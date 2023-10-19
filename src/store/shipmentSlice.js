@@ -22,7 +22,7 @@ const slice = createSlice({
 			state.shipments = [...state.shipments, action.payload]
 		},
 		delete_shipment: (state, action) => {
-			console.log(action.payload)
+			// console.log(action.payload)
 			state.shipments = state.shipments.filter(element => element.id !== action.payload)
 		},
 	},

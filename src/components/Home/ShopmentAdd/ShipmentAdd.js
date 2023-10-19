@@ -1,21 +1,28 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { Box, Button, Card, TextField } from '@mui/material'
 
 import { useUserAuth } from '../../../context/UserAuthContext'
 
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, setDoc } from 'firebase/firestore'
 import { db } from '../../../Firebase/firebase'
 import { useDispatch } from 'react-redux'
 import { add_new_shipment } from '../../../store/shipmentSlice'
 
-const ShipmentAdd = () => {
+const ShipmentAdd = props => {
 	const inputNameRef = useRef()
 	const inputNumberRef = useRef()
 	const inputDescriptionRef = useRef()
 	const dispatch = useDispatch()
 
 	const { user } = useUserAuth()
+
+	// const [editShipment, setEditShipment] = useState({
+	// 	id: '',
+	// 	name: '',
+	// 	number: '',
+	// 	description: '',
+	// })
 
 	const addButtonHandler = () => {
 		const inputName = inputNameRef.current.value
@@ -26,8 +33,8 @@ const ShipmentAdd = () => {
 		if (inputName === '' || inputNumber === '') {
 			return
 		}
-		console.log(user.uid)
-		console.log(inputName + ' ' + inputNumber)
+		// console.log(user.uid)
+		// console.log(inputName + ' ' + inputNumber)
 		// TODO: utworzenie nowej paczki w bazie danych
 		const newShipment = {
 			userUID: user.uid,
@@ -37,6 +44,7 @@ const ShipmentAdd = () => {
 			date: date,
 		}
 		addNewShipment(newShipment)
+		// editCurrentShipment(newShipment, editShipment.id)
 
 		inputNameRef.current.value = ''
 		inputNumberRef.current.value = ''
@@ -54,8 +62,8 @@ const ShipmentAdd = () => {
 		}
 
 		await addDoc(dbRef, newData).then(res => {
-			console.log(res.id)
-			console.log('utworzono')
+			// console.log(res.id)
+			// console.log('utworzono')
 			dispatch(
 				add_new_shipment({
 					id: res.id,
@@ -68,6 +76,26 @@ const ShipmentAdd = () => {
 			)
 		})
 	}
+
+	// const editCurrentShipment = async (data, id) => {
+	// 	const docRef = doc(dbRef, id)
+	// 	await setDoc(dbRef, newData).then(res => {
+	// 		console.log('edytowano')
+	// 	})
+	// }
+
+	useEffect(() => {
+		if (props.isEditingShipment) {
+			const shipment = props.isEditingShipment
+			// console.log(shipment)
+			// setEditShipment({
+			// 	id: shipment.id,
+			// 	name: shipment.name,
+			// 	number: shipment.number,
+			// 	description: shipment.description,
+			// })
+		}
+	}, [props.isEditingShipment])
 
 	return (
 		<Card
