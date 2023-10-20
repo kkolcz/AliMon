@@ -13,9 +13,11 @@ import ShipmentAdd from './ShopmentAdd/ShipmentAdd'
 
 import { useUserAuth } from '../../context/UserAuthContext'
 import { useNavigate } from 'react-router-dom'
+import iseDatabase from '../../hooks/use-database'
+import useDatabase from '../../hooks/use-database'
 
 const Home = () => {
-	const [isLoaded, setIsLoaded] = useState(false)
+	const [isLoaded, setIsLoaded] = useState(true)
 	const [isEditingShipment, setIsEditingShipment] = useState(false)
 
 	const dispatch = useDispatch()
@@ -23,35 +25,15 @@ const Home = () => {
 	const { user } = useUserAuth()
 	let shipments = []
 
-	useEffect(() => {
-		const getShipments = async userid => {
-			const q = query(collection(db, 'shipments'), where('userUID', '==', userid))
-			getDocs(q)
-				.then(res => {
-					res.forEach(doc => {
-						shipments.push({
-							id: doc.id,
-							name: doc.data().name,
-							number: doc.data().number,
-							description: doc.data().description,
-							date: doc.data().date,
-						})
-					})
-				})
-				.then(() => {
-					dispatch(set_shipments_list(shipments))
-					setIsLoaded(true)
-				})
-		}
+	const { test: test, isLoading: isLoading, getPackages: getPackages } = useDatabase()
 
+	useEffect(() => {
 		if (user) {
-			getShipments(user.uid)
+			getPackages(user.uid)
 		}
 		if (!user) {
 			navigate('/')
 		}
-
-		// console.log(shipments)
 	}, [user])
 
 	const editShipmentHandler = shipment => {
@@ -61,9 +43,9 @@ const Home = () => {
 	return (
 		<Fragment>
 			<Box display='flex' flexDirection='column' alignItems='center' m='1rem' p='1rem'>
-				{isLoaded && <ShipmentList onEditShipment={editShipmentHandler} />}
-				{isLoaded && <ShipmentAdd isEditingShipment={isEditingShipment} />}
-				{!isLoaded && <CircularProgress />}
+				{!isLoading && <ShipmentList onEditShipment={editShipmentHandler} />}
+				{!isLoading && <ShipmentAdd isEditingShipment={isEditingShipment} />}
+				{isLoading && <CircularProgress />}
 			</Box>
 		</Fragment>
 	)
