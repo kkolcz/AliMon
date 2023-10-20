@@ -20,17 +20,15 @@ import TravelExploreIcon from '@mui/icons-material/TravelExplore'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
+import useDatabase from '../../../hooks/use-database'
+
 const ShipmentList = props => {
 	let shipmentList = useSelector(selectShipments)
 	const dispatch = useDispatch()
+	const { deleteShipment } = useDatabase()
 
 	const deleteShipmentHandler = id => async () => {
-		// console.log(id)
-
-		await deleteDoc(doc(db, 'shipments', id)).then(res => {
-			dispatch(delete_shipment(id))
-			// console.log(res)
-		})
+		deleteShipment(id)
 	}
 
 	const trackingShipmentHandler = number => () => {

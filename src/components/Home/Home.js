@@ -25,11 +25,11 @@ const Home = () => {
 	const { user } = useUserAuth()
 	let shipments = []
 
-	const { isLoading: isLoading, error: error, getPackages: getPackages } = useDatabase()
+	const { isLoading: isLoading, error: error, getShipments: getShipments } = useDatabase()
 
 	useEffect(() => {
 		if (user) {
-			getPackages(user.uid)
+			getShipments(user.uid)
 		}
 		if (!user) {
 			navigate('/')

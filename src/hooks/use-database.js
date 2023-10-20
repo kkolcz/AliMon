@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react'
 
-import { query, collection, getDocs, where } from 'firebase/firestore'
+import { query, collection, getDocs, where, addDoc, deleteDoc, doc } from 'firebase/firestore'
 import { db } from '../Firebase/firebase'
 import { useDispatch } from 'react-redux'
-import { set_shipments_list } from '../store/shipmentSlice'
+import { set_shipments_list, add_new_shipment, delete_shipment } from '../store/shipmentSlice'
 
 const useDatabase = () => {
 	const [isLoading, setIsLoading] = useState(false)
@@ -11,7 +11,7 @@ const useDatabase = () => {
 	let shipments = []
 	const dispatch = useDispatch()
 
-	const getPackages = async userid => {
+	const getShipments = async userid => {
 		setIsLoading(true)
 		const q = query(collection(db, 'shipments'), where('userUID', '==', userid))
 		const docs = getDocs(q)
@@ -37,10 +37,37 @@ const useDatabase = () => {
 			})
 	}
 
+	const addNewShipment = async data => {
+		const dbRef = collection(db, 'shipments')
+
+		await addDoc(dbRef, data).then(res => {
+			// console.log(res.id)
+			// console.log('utworzono')
+			dispatch(
+				add_new_shipment({
+					id: res.id,
+					userUID: data.userUID,
+					name: data.name,
+					number: data.number,
+					description: data.description,
+					date: data.date,
+				})
+			)
+		})
+	}
+
+	const deleteShipment = async id => {
+		await deleteDoc(doc(db, 'shipments', id)).then(res => {
+			dispatch(delete_shipment(id))
+		})
+	}
+
 	return {
 		isLoading: isLoading,
 		error: error,
-		getPackages: getPackages,
+		getShipments: getShipments,
+		addNewShipment: addNewShipment,
+		deleteShipment: deleteShipment,
 	}
 }
 

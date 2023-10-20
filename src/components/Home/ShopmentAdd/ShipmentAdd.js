@@ -9,20 +9,17 @@ import { db } from '../../../Firebase/firebase'
 import { useDispatch } from 'react-redux'
 import { add_new_shipment } from '../../../store/shipmentSlice'
 
+import useDatabase from '../../../hooks/use-database'
+
 const ShipmentAdd = props => {
 	const inputNameRef = useRef()
 	const inputNumberRef = useRef()
 	const inputDescriptionRef = useRef()
 	const dispatch = useDispatch()
 
-	const { user } = useUserAuth()
+	const { addNewShipment: addNewShipment } = useDatabase()
 
-	// const [editShipment, setEditShipment] = useState({
-	// 	id: '',
-	// 	name: '',
-	// 	number: '',
-	// 	description: '',
-	// })
+	const { user } = useUserAuth()
 
 	const addButtonHandler = () => {
 		const inputName = inputNameRef.current.value
@@ -33,9 +30,7 @@ const ShipmentAdd = props => {
 		if (inputName === '' || inputNumber === '') {
 			return
 		}
-		// console.log(user.uid)
-		// console.log(inputName + ' ' + inputNumber)
-		// TODO: utworzenie nowej paczki w bazie danych
+
 		const newShipment = {
 			userUID: user.uid,
 			name: inputName,
@@ -43,46 +38,13 @@ const ShipmentAdd = props => {
 			description: inputDescription,
 			date: date,
 		}
+
 		addNewShipment(newShipment)
-		// editCurrentShipment(newShipment, editShipment.id)
 
 		inputNameRef.current.value = ''
 		inputNumberRef.current.value = ''
 		inputDescriptionRef.current.value = ''
 	}
-
-	const addNewShipment = async data => {
-		const dbRef = collection(db, 'shipments')
-		const newData = {
-			userUID: data.userUID,
-			name: data.name,
-			number: data.number,
-			description: data.description,
-			date: data.date,
-		}
-
-		await addDoc(dbRef, newData).then(res => {
-			// console.log(res.id)
-			// console.log('utworzono')
-			dispatch(
-				add_new_shipment({
-					id: res.id,
-					userUID: data.userUID,
-					name: data.name,
-					number: data.number,
-					description: data.description,
-					date: data.date,
-				})
-			)
-		})
-	}
-
-	// const editCurrentShipment = async (data, id) => {
-	// 	const docRef = doc(dbRef, id)
-	// 	await setDoc(dbRef, newData).then(res => {
-	// 		console.log('edytowano')
-	// 	})
-	// }
 
 	useEffect(() => {
 		if (props.isEditingShipment) {
