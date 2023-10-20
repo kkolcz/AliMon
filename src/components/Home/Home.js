@@ -25,7 +25,7 @@ const Home = () => {
 	const { user } = useUserAuth()
 	let shipments = []
 
-	const { test: test, isLoading: isLoading, getPackages: getPackages } = useDatabase()
+	const { isLoading: isLoading, error: error, getPackages: getPackages } = useDatabase()
 
 	useEffect(() => {
 		if (user) {

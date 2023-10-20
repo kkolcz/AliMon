@@ -32,6 +32,9 @@ const useDatabase = () => {
 				dispatch(set_shipments_list(shipments))
 				setIsLoading(false)
 			})
+			.catch(err => {
+				setError(err.message || 'Coś poszło nie tak!')
+			})
 	}
 
 	return {
