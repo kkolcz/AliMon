@@ -5,7 +5,7 @@ import { Box } from '@mui/system'
 
 const Footer = () => {
 	return (
-		<Box bottom='0' width='100%' textAlign='center' backgroundColor='#FAFAFA'>
+		<Box bottom='0' position='fixed' width='100%' textAlign='center' backgroundColor='#FAFAFA' zIndex='-1'>
 			<Typography variant='h8' component='p'>
 				© Copyright by XYZ
 			</Typography>
