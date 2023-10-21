@@ -2,30 +2,20 @@ import React, { Fragment, useEffect, useState } from 'react'
 
 import { Box, CircularProgress } from '@mui/material'
 
-import { query, collection, getDocs, where } from 'firebase/firestore'
-import { db } from '../../Firebase/firebase'
-
-import { useDispatch } from 'react-redux'
-import { set_shipments_list } from '../../store/shipmentSlice'
-
 import ShipmentList from './ShipmentList/ShipmentList'
-import ShipmentAdd from './ShopmentAdd/ShipmentAdd'
+import ShipmentAdd from './ShipmentAdd/ShipmentAdd'
 
 import { useUserAuth } from '../../context/UserAuthContext'
 import { useNavigate } from 'react-router-dom'
-import iseDatabase from '../../hooks/use-database'
 import useDatabase from '../../hooks/use-database'
 
 const Home = () => {
-	const [isLoaded, setIsLoaded] = useState(true)
 	const [isEditingShipment, setIsEditingShipment] = useState(false)
 
-	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { user } = useUserAuth()
-	let shipments = []
 
-	const { isLoading: isLoading, error: error, getShipments: getShipments } = useDatabase()
+	const { isLoading, getShipments } = useDatabase()
 
 	useEffect(() => {
 		if (user) {
@@ -34,7 +24,7 @@ const Home = () => {
 		if (!user) {
 			navigate('/')
 		}
-	}, [user])
+	}, [user, navigate])
 
 	const editShipmentHandler = shipment => {
 		setIsEditingShipment(shipment)

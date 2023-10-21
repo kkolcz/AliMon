@@ -6,7 +6,6 @@ import { Box } from '@mui/system'
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice'
 
 import { useUserAuth } from '../../../context/UserAuthContext'
-import { useNavigate } from 'react-router-dom'
 
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
@@ -15,7 +14,6 @@ const StyledToolbar = styled(Toolbar)({
 
 const Navbar = props => {
 	const { logOut, isLogin } = useUserAuth()
-	const navigate = useNavigate()
 
 	const logoutHandler = () => {
 		logOut()

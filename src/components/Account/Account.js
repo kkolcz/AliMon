@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { Button, Box, Card } from '@mui/material'
 
 import Login from './Login/Login'
 import Register from './Register/Register'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Account = props => {
 	const [isRegister, setIsRegister] = useState(false)
@@ -19,8 +19,6 @@ const Account = props => {
 			navigate('/account/login')
 		}
 	}
-
-	const { option } = useParams()
 
 	return (
 		<Box display='flex' flexDirection='column' alignItems='center' m='1rem' p='1rem'>

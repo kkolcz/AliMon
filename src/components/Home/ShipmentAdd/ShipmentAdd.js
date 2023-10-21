@@ -1,13 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
-import { Box, Button, Card, TextField } from '@mui/material'
+import { Button, Card, TextField } from '@mui/material'
 
 import { useUserAuth } from '../../../context/UserAuthContext'
-
-import { addDoc, collection, setDoc } from 'firebase/firestore'
-import { db } from '../../../Firebase/firebase'
-import { useDispatch } from 'react-redux'
-import { add_new_shipment } from '../../../store/shipmentSlice'
 
 import useDatabase from '../../../hooks/use-database'
 
@@ -15,10 +10,8 @@ const ShipmentAdd = props => {
 	const inputNameRef = useRef()
 	const inputNumberRef = useRef()
 	const inputDescriptionRef = useRef()
-	const dispatch = useDispatch()
 
-	const { addNewShipment: addNewShipment } = useDatabase()
-
+	const { addNewShipment } = useDatabase()
 	const { user } = useUserAuth()
 
 	const addButtonHandler = () => {
@@ -46,18 +39,11 @@ const ShipmentAdd = props => {
 		inputDescriptionRef.current.value = ''
 	}
 
-	useEffect(() => {
-		if (props.isEditingShipment) {
-			const shipment = props.isEditingShipment
-			// console.log(shipment)
-			// setEditShipment({
-			// 	id: shipment.id,
-			// 	name: shipment.name,
-			// 	number: shipment.number,
-			// 	description: shipment.description,
-			// })
-		}
-	}, [props.isEditingShipment])
+	// useEffect(() => {
+	// 	if (props.isEditingShipment) {
+	// 		const shipment = props.isEditingShipment
+	// 	}
+	// }, [props.isEditingShipment])
 
 	return (
 		<Card

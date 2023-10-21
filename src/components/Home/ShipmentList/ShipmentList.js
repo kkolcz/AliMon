@@ -1,12 +1,9 @@
 import React from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { selectShipments, delete_shipment } from '../../../store/shipmentSlice'
+import { useSelector } from 'react-redux'
+import { selectShipments } from '../../../store/shipmentSlice'
 
-import { doc, deleteDoc } from 'firebase/firestore'
-import { db } from '../../../Firebase/firebase'
-
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button } from '@mui/material'
 
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -24,7 +21,6 @@ import useDatabase from '../../../hooks/use-database'
 
 const ShipmentList = props => {
 	let shipmentList = useSelector(selectShipments)
-	const dispatch = useDispatch()
 	const { deleteShipment } = useDatabase()
 
 	const deleteShipmentHandler = id => async () => {
@@ -32,15 +28,11 @@ const ShipmentList = props => {
 	}
 
 	const trackingShipmentHandler = number => () => {
-		// window.open('someLink', '_blank')
 		const url = `https://alipaczka.pl/?track=${number}`
 		window.open(url, '_blank', 'noopener,noreferrer')
-		// if (newWindow) newWindow.opener = null
-		// console.log(e)
 	}
 
 	const editShipmentHandler = shipment => () => {
-		// console.log(id)
 		props.onEditShipment(shipment)
 	}
 
