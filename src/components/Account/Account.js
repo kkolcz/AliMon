@@ -1,18 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Button, Box, Card } from '@mui/material'
 
 import Login from './Login/Login'
 import Register from './Register/Register'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Account = props => {
 	const [isRegister, setIsRegister] = useState(false)
 
 	const navigate = useNavigate()
+	const { option } = useParams()
+
+	useEffect(() => {
+		console.log(option)
+		if (option === 'register') {
+			setIsRegister(true)
+		} else {
+			setIsRegister(false)
+		}
+	}, [option])
 
 	const buttonRegisterHandler = () => {
-		setIsRegister(!isRegister)
 		if (!isRegister) {
 			navigate('/account/register')
 		} else {
