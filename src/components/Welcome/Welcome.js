@@ -6,9 +6,13 @@ const Welcome = () => {
 	return (
 		<Fragment>
 			<Box display='flex' flexDirection='column' alignItems='center' m='1rem' p='1rem'>
-				<Box sx={{ m: 5 }}>
+				<Box sx={{ m: 5, textAlign: 'left', maxWidth: '60%' }}>
 					<Typography variant='h4'>Witaj na AliMon</Typography>
 					<Typography variant='h5'>Umożliwiamy sprawniejsze zarządzanie paczkami.</Typography>
+					<Typography variant='p'>
+						Dzięki platformie możesz kontrolować swoje przesyłki w łatwy i efektywny sposób.
+					</Typography>
+					<Typography>Wystarczy się zarejestrować, jest to całkowicie darmowe.</Typography>
 				</Box>
 				<Box sx={{ display: 'flex' }}>
 					<WelcomeCard
