@@ -30,7 +30,7 @@ const ShipmentAdd = props => {
 	// const date = new Date().toLocaleString()
 
 	const addButtonHandler = () => {
-		const date = new Date(inputDate).toLocaleDateString()
+		const date = new Date(inputDate).toLocaleDateString('pl-PL', { year: 'numeric', month: '2-digit', day: '2-digit' })
 		const inputName = inputNameRef.current.value
 		const inputNumber = inputNumberRef.current.value
 		const inputDescription = inputDescriptionRef.current.value
