@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react'
 
-import { query, collection, getDocs, where, addDoc, deleteDoc, doc } from 'firebase/firestore'
+import { query, collection, getDocs, where, addDoc, deleteDoc, doc, setDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../Firebase/firebase'
 import { useDispatch } from 'react-redux'
-import { set_shipments_list, add_new_shipment, delete_shipment } from '../store/shipmentSlice'
+import { set_shipments_list, add_new_shipment, delete_shipment, edit_shipment } from '../store/shipmentSlice'
 
 const useDatabase = () => {
 	const [isLoading, setIsLoading] = useState(false)
@@ -56,6 +56,14 @@ const useDatabase = () => {
 		})
 	}
 
+	const updateShipment = async (id, data) => {
+		const updateData = { id: id, ...data }
+
+		await updateDoc(doc(db, 'shipments', id), data).then(res => {
+			dispatch(edit_shipment(updateData))
+		})
+	}
+
 	const deleteShipment = async id => {
 		await deleteDoc(doc(db, 'shipments', id)).then(res => {
 			dispatch(delete_shipment(id))
@@ -67,6 +75,7 @@ const useDatabase = () => {
 		error: error,
 		getShipments: getShipments,
 		addNewShipment: addNewShipment,
+		updateShipment: updateShipment,
 		deleteShipment: deleteShipment,
 	}
 }

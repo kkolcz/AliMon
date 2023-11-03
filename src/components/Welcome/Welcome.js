@@ -12,7 +12,15 @@ const Welcome = () => {
 				</Box>
 				<Box sx={{ display: 'flex' }}>
 					<WelcomeCard
-						sx={{ m: 2, minWidth: 250, maxWidth: 275, maxHeight: 275 }}
+						sx={{
+							m: 2,
+							width: 275,
+							height: 175,
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'space-between',
+							alignItems: 'center',
+						}}
 						text1={{ variant: 'h5', color: 'primary', text: 'Nie masz konta?' }}
 						text2={{
 							sx: { mt: 2, fontSize: 16 },
@@ -22,7 +30,15 @@ const Welcome = () => {
 						button={{ text: 'Zarejestruj się!', link: '/account/register' }}
 					/>
 					<WelcomeCard
-						sx={{ m: 2, minWidth: 250, maxWidth: 275, maxHeight: 275 }}
+						sx={{
+							m: 2,
+							width: 275,
+							height: 175,
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'space-between',
+							alignItems: 'center',
+						}}
 						text1={{ variant: 'h5', color: 'primary', text: 'Jesteś już użytkownikiem?' }}
 						text2={{
 							sx: { mt: 2, fontSize: 16 },

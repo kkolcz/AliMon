@@ -44,9 +44,9 @@ const ShipmentList = props => {
 					<Table sx={{ minWidth: 1000 }} aria-label='simple table'>
 						<TableHead>
 							<TableRow>
-								<TableCell>Nazwa paczki</TableCell>
-								<TableCell align='center'>Numer paczki</TableCell>
-								<TableCell align='center'>Data paczki</TableCell>
+								<TableCell>Nazwa przesyłki</TableCell>
+								<TableCell align='center'>Numer przesyłki</TableCell>
+								<TableCell align='center'>Data nadania</TableCell>
 								<TableCell align='center'>Opis</TableCell>
 								<TableCell align='right'>Zarządzaj</TableCell>
 							</TableRow>
