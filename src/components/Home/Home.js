@@ -24,6 +24,7 @@ const Home = () => {
 		if (!user) {
 			navigate('/')
 		}
+		// eslint-disable-next-line
 	}, [user, navigate])
 
 	const editShipmentHandler = shipment => {

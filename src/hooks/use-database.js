@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 
-import { query, collection, getDocs, where, addDoc, deleteDoc, doc, setDoc, updateDoc } from 'firebase/firestore'
+import { query, collection, getDocs, where, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../Firebase/firebase'
 import { useDispatch } from 'react-redux'
 import { set_shipments_list, add_new_shipment, delete_shipment, edit_shipment } from '../store/shipmentSlice'

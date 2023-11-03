@@ -21,7 +21,7 @@ const ShipmentAdd = props => {
 	//INPUTS USE STATE
 	const [inputDate, setInputDate] = useState(dayjs())
 
-	const [editShipmentValues, setEditShipmentValues] = useState({ name: '', number: '', description: '' })
+	// const [editShipmentValues, setEditShipmentValues] = useState({ name: '', number: '', description: '' })
 	const [isEditing, setIsEditing] = useState(false)
 
 	const { addNewShipment, updateShipment } = useDatabase()
@@ -86,7 +86,7 @@ const ShipmentAdd = props => {
 	useEffect(() => {
 		if (props.isEditingShipment) {
 			setIsEditing(true)
-			setEditShipmentValues(shipment)
+			// setEditShipmentValues(shipment)
 			inputNameRef.current.value = shipment.name
 			inputNumberRef.current.value = shipment.number
 			inputDescriptionRef.current.value = shipment.description
@@ -94,7 +94,7 @@ const ShipmentAdd = props => {
 		} else {
 			setIsEditing(false)
 		}
-	}, [props.isEditingShipment])
+	}, [props.isEditingShipment, shipment])
 
 	return (
 		<Card
