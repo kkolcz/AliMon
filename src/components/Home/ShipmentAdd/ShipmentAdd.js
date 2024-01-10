@@ -21,13 +21,10 @@ const ShipmentAdd = props => {
 	//INPUTS USE STATE
 	const [inputDate, setInputDate] = useState(dayjs())
 
-	// const [editShipmentValues, setEditShipmentValues] = useState({ name: '', number: '', description: '' })
 	const [isEditing, setIsEditing] = useState(false)
 
 	const { addNewShipment, updateShipment } = useDatabase()
 	const { user } = useUserAuth()
-
-	// const date = new Date().toLocaleString()
 
 	const addButtonHandler = () => {
 		const date = new Date(inputDate).toLocaleDateString('pl-PL', { year: 'numeric', month: '2-digit', day: '2-digit' })
@@ -86,7 +83,6 @@ const ShipmentAdd = props => {
 	useEffect(() => {
 		if (props.isEditingShipment) {
 			setIsEditing(true)
-			// setEditShipmentValues(shipment)
 			inputNameRef.current.value = shipment.name
 			inputNumberRef.current.value = shipment.number
 			inputDescriptionRef.current.value = shipment.description

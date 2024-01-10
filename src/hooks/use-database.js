@@ -41,8 +41,6 @@ const useDatabase = () => {
 		const dbRef = collection(db, 'shipments')
 
 		await addDoc(dbRef, data).then(res => {
-			// console.log(res.id)
-			// console.log('utworzono')
 			dispatch(
 				add_new_shipment({
 					id: res.id,

@@ -9,15 +9,8 @@ import { Routes, Route } from 'react-router-dom'
 
 import { UserAuthContextProvider } from './context/UserAuthContext'
 import Welcome from './components/Welcome/Welcome'
-// import ProtectedRoute from './ProtectedRoute'
 
 function App() {
-	// const [isLogin, setIsLogin] = useState(false)
-
-	const loginHandler = () => {
-		// setIsLogin(true)
-	}
-
 	const logOutHandler = () => {}
 
 	return (
@@ -27,7 +20,7 @@ function App() {
 					<Routes>
 						<Route path='/' element={<Welcome />} />
 						<Route path='/home' element={<Home />} />
-						<Route path='/account/:option' element={<Account onLogin={loginHandler} />} />
+						<Route path='/account/:option' element={<Account />} />
 						<Route path='*' element={<Error code='404' title='Something go wrong!' />} />
 						{/* {isLogin && }
 					{!isLogin && } */}

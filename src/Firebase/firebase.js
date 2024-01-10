@@ -18,18 +18,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 const app = initializeApp(firebaseConfig)
+
 // Initialize Firebase
 export const auth = firebase.auth()
 export const db = getFirestore(app)
-
-// export const registerUser = (email, password) => {
-// 	return auth
-// 		.createUserWithEmailAndPassword(email, password)
-// 		.catch(error => alert(`Email is alredy in use, sign in or use other email, ${error}`))
-// }
-
-// export const loginUser = (email, password) => {
-// 	return auth.signInWithEmailAndPassword(email, password).catch(error => {
-// 		alert(error)
-// 	})
-// }

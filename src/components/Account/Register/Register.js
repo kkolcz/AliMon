@@ -24,15 +24,12 @@ const Register = () => {
 		if (passwordInput === repasswordInput) {
 			await signUp(emailInput, passwordInput)
 				.then(res => {
-					console.log('res')
-					console.log(res.user.uid)
-
 					const newUser = { login: loginInput, userUID: res.user.uid }
 					const dbRef = collection(db, 'users')
 					addDoc(dbRef, newUser)
 				})
 				.catch(err => {
-					console.warn(err)
+					console.error(err)
 					const errorCode = err.code
 
 					switch (errorCode) {
@@ -49,8 +46,6 @@ const Register = () => {
 							alert(`Nieznany błąd! ${errorCode}`)
 					}
 				})
-
-			//TODO: utworzenie użytkownika w bazie danych firebase
 		} else {
 			return
 		}
@@ -67,14 +62,6 @@ const Register = () => {
 						width: 600,
 						padding: 10,
 					}}>
-					{/* <Box
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						width: 300,
-						padding: 10,
-						border: '1px dashed grey',
-					}}> */}
 					<TextField inputRef={loginInputRef} id='login' label='Login' variant='outlined' sx={{ m: 2 }} />
 					<TextField inputRef={emailInputRef} id='email' label='Email' variant='outlined' sx={{ m: 2 }} />
 					<TextField
@@ -96,7 +83,6 @@ const Register = () => {
 					<Button variant='contained' onClick={buttonRegisterHandler} sx={{ m: 2 }}>
 						Zarejestruj
 					</Button>
-					{/* </Box> */}
 				</Paper>
 			</div>
 		</div>

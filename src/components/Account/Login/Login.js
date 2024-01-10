@@ -22,7 +22,7 @@ const Login = props => {
 				navigate('/home')
 			})
 			.catch(err => {
-				console.warn(err)
+				console.error(err)
 				const errorCode = err.code
 
 				switch (errorCode) {

@@ -6,8 +6,6 @@ const ProtectedRoute = ({ children }) => {
 	const { user } = useUserAuth()
 
 	if (!user) {
-		console.log('Nie zalogowano:')
-		console.log(user)
 		return <Navigate to='/account' />
 	}
 

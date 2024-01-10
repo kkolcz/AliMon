@@ -13,7 +13,7 @@ const Account = props => {
 	const { option } = useParams()
 
 	useEffect(() => {
-		console.log(option)
+		// console.log(option)
 		if (option === 'register') {
 			setIsRegister(true)
 		} else {
