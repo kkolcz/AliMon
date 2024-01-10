@@ -45,11 +45,11 @@ const Login = props => {
 	}
 
 	// LOGIN AFTER KEYDOWN ENTER
-	// document.addEventListener('keydown', e => {
-	// 	if (e.code === 'Enter') {
-	// 		buttonLoginHandler()
-	// 	}
-	// })
+	document.addEventListener('keydown', e => {
+		if (e.code === 'Enter') {
+			buttonLoginHandler()
+		}
+	})
 
 	return (
 		<div>

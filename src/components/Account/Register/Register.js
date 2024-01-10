@@ -51,6 +51,13 @@ const Register = () => {
 		}
 	}
 
+	// LOGIN AFTER KEYDOWN ENTER
+	document.addEventListener('keydown', e => {
+		if (e.code === 'Enter') {
+			buttonRegisterHandler()
+		}
+	})
+
 	return (
 		<div>
 			<h1 style={{ textAlign: 'center' }}>Rejestracja</h1>
