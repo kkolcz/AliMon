@@ -13,8 +13,8 @@
 ### Clone repository and install
 
 ```
-git clone https://github.com/kkolcz/reactjs-alimon-app.git
-cd reactjs-alimon-app
+git clone https://github.com/kkolcz/reactjs-alimon.git
+cd reactjs-alimon
 npm install
 ```
 
