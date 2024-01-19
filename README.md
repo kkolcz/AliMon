@@ -6,15 +6,15 @@
 
 ## Live demo
 
-[Demo](https://alimon.netlify.app/)
+[Demo](https://reactjs-alimon.netlify.app)
 
 ## How to run?
 
 ### Clone repository and install
 
 ```
-git clone https://github.com/kkolcz/reactjs-alimon.git
-cd reactjs_alimon
+git clone https://github.com/kkolcz/reactjs-alimon-app.git
+cd reactjs-alimon-app
 npm install
 ```
 
