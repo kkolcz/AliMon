@@ -18,6 +18,12 @@ cd reactjs-alimon
 npm install
 ```
 
+### Configure
+
+Application uses Google Firebase (Authentication and Firestore Database).
+
+The configuration file is located in `/src/Firebase/firebase.js`.
+
 ### Development server
 
 Run `npm start`.
