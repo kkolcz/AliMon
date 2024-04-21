@@ -2,3 +2,21 @@
 	display: none;
 	background-color: red;
 }
+
+/* body {
+	background-color: green;
+} */
+
+@media screen and (max-width: 1000px) {
+	.container {
+		margin: 1em 2em;
+	}
+
+	/* body {
+		background-color: green;
+	}
+
+	.test {
+		background-color: green;
+	} */
+}
