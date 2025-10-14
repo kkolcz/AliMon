@@ -1,11 +1,35 @@
 export const formatDate = (date, locale = 'pl-PL') => {
 	if (!date) return ''
+
+	if (typeof date === 'string' && /^\d{2}[./]\d{2}[./]\d{4}$/.test(date)) {
+		return date.replace(/\//g, '.')
+	}
+
+	if (typeof date === 'string') {
+		const parts = date.split(/[./\-]/)
+		if (parts.length === 3) {
+			const [day, month, year] = parts
+			const dateObj = new Date(year, month - 1, day)
+			if (!isNaN(dateObj.getTime())) {
+				return dateObj.toLocaleDateString(locale, {
+					year: 'numeric',
+					month: '2-digit',
+					day: '2-digit',
+				})
+			}
+		}
+	}
+
 	const dateObj = date instanceof Date ? date : new Date(date)
-	return dateObj.toLocaleDateString(locale, {
-		year: 'numeric',
-		month: '2-digit',
-		day: '2-digit',
-	})
+	if (!isNaN(dateObj.getTime())) {
+		return dateObj.toLocaleDateString(locale, {
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+		})
+	}
+
+	return 'Invalid Date'
 }
 
 export const isValidEmail = email => {
