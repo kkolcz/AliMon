@@ -14,7 +14,6 @@ export const isValidEmail = email => {
 }
 
 export const isValidShipmentNumber = number => {
-	// Shipment numbers are typically alphanumeric
 	return number && number.length >= 5 && /^[A-Z0-9]+$/i.test(number)
 }
 
@@ -51,7 +50,7 @@ export const isMobileDevice = () => {
 
 export const parseFirebaseError = error => {
 	const errorCode = error?.code || ''
-	
+
 	const errorMessages = {
 		'auth/user-not-found': 'Nie znaleziono użytkownika',
 		'auth/wrong-password': 'Nieprawidłowe hasło',
@@ -60,6 +59,6 @@ export const parseFirebaseError = error => {
 		'auth/invalid-email': 'Nieprawidłowy adres email',
 		'auth/too-many-requests': 'Zbyt wiele prób. Spróbuj później',
 	}
-	
+
 	return errorMessages[errorCode] || 'Wystąpił nieoczekiwany błąd'
 }

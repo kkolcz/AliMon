@@ -146,17 +146,17 @@ const ShipmentAdd = props => {
 
 			{!isEditing && (
 				<div>
-					<Button variant='contained' sx={{ m: 2 }} onClick={addButtonHandler}>
+					<Button variant='contained' color='primary' sx={{ m: 2, minWidth: '120px' }} onClick={addButtonHandler}>
 						Dodaj
 					</Button>
 				</div>
 			)}
 			{isEditing && (
 				<div>
-					<Button variant='contained' sx={{ m: 2 }} onClick={updateButtonHandler}>
+					<Button variant='contained' color='success' sx={{ m: 2, minWidth: '120px' }} onClick={updateButtonHandler}>
 						Zapisz
 					</Button>
-					<Button variant='contained' sx={{ m: 2 }} onClick={cancelButtonHandler}>
+					<Button variant='outlined' color='secondary' sx={{ m: 2, minWidth: '120px' }} onClick={cancelButtonHandler}>
 						Anuluj
 					</Button>
 				</div>

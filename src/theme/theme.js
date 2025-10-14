@@ -5,26 +5,26 @@ export const getTheme = mode => {
 		palette: {
 			mode,
 			primary: {
-				main: '#1976d2',
+				main: mode === 'dark' ? '#90caf9' : '#1976d2',
 				light: '#42a5f5',
 				dark: '#1565c0',
 			},
 			secondary: {
-				main: '#dc004e',
+				main: mode === 'dark' ? '#f48fb1' : '#dc004e',
 				light: '#f73378',
 				dark: '#9a0036',
 			},
 			success: {
-				main: '#4caf50',
+				main: mode === 'dark' ? '#66bb6a' : '#4caf50',
 			},
 			error: {
-				main: '#f44336',
+				main: mode === 'dark' ? '#f44336' : '#d32f2f',
 			},
 			warning: {
-				main: '#ff9800',
+				main: mode === 'dark' ? '#ffa726' : '#ff9800',
 			},
 			info: {
-				main: '#2196f3',
+				main: mode === 'dark' ? '#29b6f6' : '#0288d1',
 			},
 			background: {
 				default: mode === 'light' ? '#f5f5f5' : '#121212',
@@ -69,11 +69,30 @@ export const getTheme = mode => {
 						fontWeight: 500,
 						borderRadius: 8,
 						padding: '8px 16px',
+						transition: 'all 0.2s ease-in-out',
 					},
 					contained: {
-						boxShadow: 'none',
+						boxShadow: mode === 'dark' ? '0 2px 4px rgba(0,0,0,0.3)' : 'none',
 						'&:hover': {
-							boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+							boxShadow: mode === 'dark' ? '0 4px 12px rgba(0,0,0,0.5)' : '0 2px 8px rgba(0,0,0,0.15)',
+							transform: 'translateY(-1px)',
+						},
+					},
+					outlined: {
+						borderWidth: '2px',
+						'&:hover': {
+							borderWidth: '2px',
+							backgroundColor: mode === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
+						},
+					},
+				},
+			},
+			MuiIconButton: {
+				styleOverrides: {
+					root: {
+						transition: 'all 0.2s ease-in-out',
+						'&:hover': {
+							transform: 'scale(1.1)',
 						},
 					},
 				},

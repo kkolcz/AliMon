@@ -66,24 +66,36 @@ const ShipmentList = props => {
 									<TableCell width='30%' align='center'>
 										{row.description}
 									</TableCell>
-									<TableCell width='15%' align='right' style={{ display: 'flex', width: '200px' }}>
-										<Button
-											variant='contained'
-											id={row.id}
-											onClick={deleteShipmentHandler(row.id)}
-											sx={{ marginLeft: '10px' }}>
-											<DeleteIcon />
-										</Button>
-										<Button
-											variant='contained'
-											id={row.number}
-											onClick={trackingShipmentHandler(row.number)}
-											sx={{ marginLeft: '10px' }}>
-											<TravelExploreIcon />
-										</Button>
-										<Button variant='contained' id={row.id} onClick={editShipmentHandler(row)}>
-											<EditIcon />
-										</Button>
+									<TableCell width='15%' align='right'>
+										<Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
+											<Button
+												variant='contained'
+												color='primary'
+												id={row.id}
+												onClick={editShipmentHandler(row)}
+												sx={{ minWidth: '40px', padding: '8px' }}
+												title='Edytuj przesyłkę'>
+												<EditIcon />
+											</Button>
+											<Button
+												variant='contained'
+												color='info'
+												id={row.number}
+												onClick={trackingShipmentHandler(row.number)}
+												sx={{ minWidth: '40px', padding: '8px' }}
+												title='Śledź przesyłkę'>
+												<TravelExploreIcon />
+											</Button>
+											<Button
+												variant='contained'
+												color='secondary'
+												id={row.id}
+												onClick={deleteShipmentHandler(row.id)}
+												sx={{ minWidth: '40px', padding: '8px' }}
+												title='Usuń przesyłkę'>
+												<DeleteIcon />
+											</Button>
+										</Box>
 									</TableCell>
 								</TableRow>
 							))}

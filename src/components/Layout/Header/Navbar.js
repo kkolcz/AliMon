@@ -10,7 +10,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 
 import { useUserAuth } from '../../../context/UserAuthContext'
 import { useThemeMode } from '../../../context/ThemeContext'
-import { APP_NAME, APP_DESCRIPTION } from '../../../constants'
+import { APP_NAME, APP_DESCRIPTION } from '../../../config/config'
 
 const Navbar = () => {
 	const { logOut, isLogin } = useUserAuth()
