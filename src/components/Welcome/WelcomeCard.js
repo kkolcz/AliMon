@@ -8,20 +8,20 @@ import { Link } from 'react-router-dom'
 
 const WelcomeCard = props => {
 	return (
-		<Card sx={props.sx}>
+		<Card sx={props.sx} elevation={3}>
 			<CardContent>
-				<Typography variant={`${props.text1.variant}`} color={`text.${props.text1.color}`}>
+				<Typography variant={`${props.text1.variant}`} color={`text.${props.text1.color}`} fontWeight={500}>
 					{`${props.text1.text}`}
 				</Typography>
 
-				<Typography sx={props.text2.sx} variant={`${props.text2.variant}`} color={`text.${props.text2.color}`}>
+				<Typography sx={props.text2.sx} variant='body1' color={`text.${props.text2.color}`}>
 					{`${props.text2.text}`}
 				</Typography>
 			</CardContent>
-			<CardActions>
-				<Link to={props.button.link}>
-					<Button size='small'>{`${props.button.text}`}</Button>
-				</Link>
+			<CardActions sx={{ p: 2, pt: 0 }}>
+				<Button component={Link} to={props.button.link} variant='contained' color='primary' fullWidth>
+					{`${props.button.text}`}
+				</Button>
 			</CardActions>
 		</Card>
 	)
