@@ -8,9 +8,11 @@ import Navbar from './Header/Navbar'
 const Layout = props => {
 	return (
 		<Fragment>
-			<Box display='flex' flexDirection='column'>
+			<Box display='flex' flexDirection='column' minHeight='100vh'>
 				<Navbar />
-				{props.children}
+				<Box component='main' sx={{ flexGrow: 1, pb: 4 }}>
+					{props.children}
+				</Box>
 				<Footer />
 			</Box>
 		</Fragment>

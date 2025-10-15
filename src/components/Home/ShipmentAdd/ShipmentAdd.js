@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { Button, Card, TextField } from '@mui/material'
+import { Button, Card, TextField, Typography, Box } from '@mui/material'
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -93,75 +93,80 @@ const ShipmentAdd = props => {
 	}, [props.isEditingShipment, shipment])
 
 	return (
-		<Card
-			sx={{
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				marginTop: '20px',
-			}}>
-			<div>
-				{/* InputLabelProps={{ shrink: !!shipment.description }} */}
-				<TextField
-					InputLabelProps={{ shrink: true }}
-					inputRef={inputNameRef}
-					id='nazwa'
-					label='Nazwa'
-					variant='outlined'
-					sx={{ m: 2, width: 235 }}
-				/>
-				<TextField
-					InputLabelProps={{ shrink: true }}
-					inputRef={inputNumberRef}
-					id='nazwa'
-					label='Numer'
-					variant='outlined'
-					sx={{ m: 2, width: 235 }}
-				/>
-			</div>
-			<div>
-				<TextField
-					InputLabelProps={{ shrink: true }}
-					inputRef={inputDescriptionRef}
-					id='description'
-					label='Opis'
-					variant='outlined'
-					multiline
-					minRows={'3'}
-					sx={{ m: 2, width: 500 }}
-				/>
-			</div>
-
-			<div>
-				<LocalizationProvider dateAdapter={AdapterDayjs}>
-					<DatePicker
-						inputRef={inputDateRef}
-						onChange={e => setInputDate(e)}
-						label='Data nadania'
-						value={dayjs(inputDate)}
-						format='DD-MM-YYYY'
+		<>
+			<Typography variant='h5' component='h2' sx={{ mb: 3, mt: 4, fontWeight: 600 }}>
+				{isEditing ? 'Edytuj przesyłkę' : 'Dodaj nową przesyłkę'}
+			</Typography>
+			<Card
+				sx={{
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					padding: '24px',
+				}}>
+				<div>
+					{/* InputLabelProps={{ shrink: !!shipment.description }} */}
+					<TextField
+						InputLabelProps={{ shrink: true }}
+						inputRef={inputNameRef}
+						id='nazwa'
+						label='Nazwa'
+						variant='outlined'
+						sx={{ m: 2, width: 235 }}
 					/>
-				</LocalizationProvider>
-			</div>
+					<TextField
+						InputLabelProps={{ shrink: true }}
+						inputRef={inputNumberRef}
+						id='nazwa'
+						label='Numer'
+						variant='outlined'
+						sx={{ m: 2, width: 235 }}
+					/>
+				</div>
+				<div>
+					<TextField
+						InputLabelProps={{ shrink: true }}
+						inputRef={inputDescriptionRef}
+						id='description'
+						label='Opis'
+						variant='outlined'
+						multiline
+						minRows={'3'}
+						sx={{ m: 2, width: 500 }}
+					/>
+				</div>
 
-			{!isEditing && (
 				<div>
-					<Button variant='contained' sx={{ m: 2 }} onClick={addButtonHandler}>
-						Dodaj
-					</Button>
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<DatePicker
+							inputRef={inputDateRef}
+							onChange={e => setInputDate(e)}
+							label='Data nadania'
+							value={dayjs(inputDate)}
+							format='DD-MM-YYYY'
+						/>
+					</LocalizationProvider>
 				</div>
-			)}
-			{isEditing && (
-				<div>
-					<Button variant='contained' sx={{ m: 2 }} onClick={updateButtonHandler}>
-						Zapisz
-					</Button>
-					<Button variant='contained' sx={{ m: 2 }} onClick={cancelButtonHandler}>
-						Anuluj
-					</Button>
-				</div>
-			)}
-		</Card>
+
+				{!isEditing && (
+					<div>
+						<Button variant='contained' color='primary' sx={{ m: 2, minWidth: '120px' }} onClick={addButtonHandler}>
+							Dodaj
+						</Button>
+					</div>
+				)}
+				{isEditing && (
+					<div>
+						<Button variant='contained' color='primary' sx={{ m: 2, minWidth: '120px' }} onClick={updateButtonHandler}>
+							Zapisz
+						</Button>
+						<Button variant='outlined' color='secondary' sx={{ m: 2, minWidth: '120px' }} onClick={cancelButtonHandler}>
+							Anuluj
+						</Button>
+					</div>
+				)}
+			</Card>
+		</>
 	)
 }
 
