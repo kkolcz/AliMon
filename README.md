@@ -41,12 +41,12 @@ Configuration is handled via a `.env` file located in the project root.
 A sample configuration file is provided as `.env.example`.  
 You can copy it and fill in your Firebase credentials.
 
-### Development server
+### 3. Development server
 
 Run `npm start`.
 The application will start at `http://localhost:3000`.
 
-### Build
+### 4. Build
 
 Run `npm run build` to build the project.
 Builded project will be stored in the `build/` directory.
