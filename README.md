@@ -8,7 +8,7 @@ It allows users to efficiently manage all their packages, monitor shipment statu
 ### Landing page (before login)
 
 <p align="center">
-  <img width="1013" height="715" alt="Zrzut ekranu 2025-10-15 01:43:33" src="https://github.com/user-attachments/assets/2cb6f51c-7bd1-49f2-b3c5-3fa8bbdf0bb7" />
+  <img width="1013" height="715" src="https://github.com/user-attachments/assets/3f10d7ce-fb3a-43f0-8a00-123eeb893321" />
 </p>
 
 <br/>
@@ -16,7 +16,7 @@ It allows users to efficiently manage all their packages, monitor shipment statu
 ### Application dashboard
 
 <p align="center">
-  <img width="998" height="942" alt="Zrzut ekranu 2025-10-15 01:46:41" src="https://github.com/user-attachments/assets/93b6f7a4-fcc3-41d5-bdbc-73b1c7624a33" />
+  <img width="998" height="942" src="https://github.com/user-attachments/assets/93b6f7a4-fcc3-41d5-bdbc-73b1c7624a33" />
 </p>
 
 ## Live demo
